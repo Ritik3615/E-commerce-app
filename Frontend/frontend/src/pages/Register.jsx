@@ -14,31 +14,37 @@ export default function Register() {
         email,
         password,
       });
-      alert("Registration successful");
+      alert("✅ Registration successful!");
       console.log(res.data);
     } catch (err) {
-      alert("Registration failed");
+      console.error("❌ Registration error:", err.response?.data || err.message);
+      alert("Registration failed: " + (err.response?.data?.message || "Unknown error"));
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-green-200 to-green-400">
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg w-96 animate-fade-in">
-        <h2 className="text-2xl font-bold mb-6 text-green-700 text-center">Create an Account</h2>
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-green-100 to-green-400">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md animate-fade-in"
+      >
+        <h2 className="text-3xl font-bold mb-6 text-center text-green-700">
+          Create an Account
+        </h2>
         <input
           type="text"
-          placeholder="Name"
+          placeholder="Full Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="border border-gray-300 p-2 mb-4 w-full rounded"
+          className="border border-gray-300 p-3 mb-4 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
           required
         />
         <input
           type="email"
-          placeholder="Email"
+          placeholder="Email Address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="border border-gray-300 p-2 mb-4 w-full rounded"
+          className="border border-gray-300 p-3 mb-4 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
           required
         />
         <input
@@ -46,12 +52,12 @@ export default function Register() {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border border-gray-300 p-2 mb-4 w-full rounded"
+          className="border border-gray-300 p-3 mb-6 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
           required
         />
         <button
           type="submit"
-          className="bg-green-600 text-white py-2 w-full rounded hover:bg-green-700 transition duration-300"
+          className="bg-green-600 text-white font-semibold py-3 w-full rounded-md hover:bg-green-700 transition duration-300"
         >
           Register
         </button>
